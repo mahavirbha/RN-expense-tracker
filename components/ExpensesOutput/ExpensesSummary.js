@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
 import { GlobalStyles } from '../../constants/styles';
 
-const ExpensesSummary = ({ expenses, periodName }) => {
+function ExpensesSummary({ expenses, periodName }) {
   const expensesSum = expenses.reduce((sum, expense) => {
     return sum + expense.amount;
   }, 0);
@@ -10,10 +10,10 @@ const ExpensesSummary = ({ expenses, periodName }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.period}>{periodName}</Text>
-      <Text style={styles.sum}>{expensesSum.toFixed(2)}</Text>
+      <Text style={styles.sum}>${expensesSum.toFixed(2)}</Text>
     </View>
   );
-};
+}
 
 export default ExpensesSummary;
 

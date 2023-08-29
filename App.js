@@ -1,60 +1,58 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
-import IconButton from './components/UI/IconButton';
-import { ExpensesContextProvider } from './components/store/expenses-context';
-import { GlobalStyles } from './constants/styles';
-import AllExpenses from './screens/AllExpenses';
-import ManageExpenses from './screens/ManageExpenses';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
+import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
+import AllExpenses from './screens/AllExpenses';
+import { GlobalStyles } from './constants/styles';
+import IconButton from './components/UI/IconButton';
+import ExpensesContextProvider from './store/expenses-context';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
-function ExpensesOverview(params) {
+function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-        headerTintColor: '#FFFFFF',
-        tabBarStyle: {
-          backgroundColor: GlobalStyles.colors.primary500,
-        },
+        headerTintColor: 'white',
+        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
         headerRight: ({ tintColor }) => (
           <IconButton
-            icon='add'
+            icon="add"
             size={24}
             color={tintColor}
             onPress={() => {
-              navigation.navigate('MangeExpenses');
+              navigation.navigate('ManageExpense');
             }}
           />
         ),
       })}
     >
       <BottomTabs.Screen
-        name='RecentExpenses'
+        name="RecentExpenses"
         component={RecentExpenses}
         options={{
           title: 'Recent Expenses',
           tabBarLabel: 'Recent',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name='hourglass' size={size} color={color} />
+            <Ionicons name="hourglass" size={size} color={color} />
           ),
         }}
       />
       <BottomTabs.Screen
-        name='AllExpenses'
+        name="AllExpenses"
         component={AllExpenses}
         options={{
           title: 'All Expenses',
-          tabBarLabel: 'All',
+          tabBarLabel: 'All Expenses',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name='calendar' size={size} color={color} />
+            <Ionicons name="calendar" size={size} color={color} />
           ),
         }}
       />
@@ -65,23 +63,23 @@ function ExpensesOverview(params) {
 export default function App() {
   return (
     <>
-      <StatusBar style='light' />
+      <StatusBar style="light" />
       <ExpensesContextProvider>
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
               headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-              headerTintColor: '#FFFFFF',
+              headerTintColor: 'white',
             }}
           >
             <Stack.Screen
-              name='ExpensesOverview'
+              name="ExpensesOverview"
               component={ExpensesOverview}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name='MangeExpenses'
-              component={ManageExpenses}
+              name="ManageExpense"
+              component={ManageExpense}
               options={{
                 presentation: 'modal',
               }}
@@ -92,5 +90,3 @@ export default function App() {
     </>
   );
 }
-
-const styles = StyleSheet.create({});

@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { FlatList } from 'react-native';
-import ExpensesSummary from './ExpensesSummary';
-import ExpensesList from './ExpensesList';
-import { GlobalStyles } from '../../constants/styles';
 
-const ExpensesOutput = ({ expenses, expensesPeriod, fallbackText = '' }) => {
+import { GlobalStyles } from '../../constants/styles';
+import ExpensesList from './ExpensesList';
+import ExpensesSummary from './ExpensesSummary';
+
+function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
   if (expenses.length > 0) {
@@ -18,7 +17,7 @@ const ExpensesOutput = ({ expenses, expensesPeriod, fallbackText = '' }) => {
       {content}
     </View>
   );
-};
+}
 
 export default ExpensesOutput;
 
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary700,
   },
   infoText: {
-    color: '#FFFFFF',
+    color: 'white',
     fontSize: 16,
     textAlign: 'center',
     marginTop: 32,
