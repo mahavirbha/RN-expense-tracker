@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-import Input from './Input';
-import Button from '../UI/Button';
-import { getFormattedDate } from '../../util/date';
 import { GlobalStyles } from '../../constants/styles';
+import { getFormattedDate } from '../../util/date';
+import Button from '../UI/Button';
+import Input from './Input';
 
 function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   const [inputs, setInputs] = useState({
@@ -71,7 +70,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       <View style={styles.inputsRow}>
         <Input
           style={styles.rowInput}
-          label="Amount"
+          label='Amount'
           invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: 'decimal-pad',
@@ -81,7 +80,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         />
         <Input
           style={styles.rowInput}
-          label="Date"
+          label='Date'
           invalid={!inputs.date.isValid}
           textInputConfig={{
             placeholder: 'YYYY-MM-DD',
@@ -92,7 +91,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         />
       </View>
       <Input
-        label="Description"
+        label='Description'
         invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
@@ -108,7 +107,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         </Text>
       )}
       <View style={styles.buttons}>
-        <Button style={styles.button} mode="flat" onPress={onCancel}>
+        <Button style={styles.button} mode='flat' onPress={onCancel}>
           Cancel
         </Button>
         <Button style={styles.button} onPress={submitHandler}>
